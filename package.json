@@ -41,6 +41,15 @@
                             "srv"
                         ]
                     }
+                },
+                {
+                    "src": "user-db",
+                    "for": "hana",
+                    "options": {
+                        "model": [
+                            "user-db"
+                        ]
+                    }
                 }
             ]
         },
@@ -51,6 +60,12 @@
         },
         "hana": {
             "deploy-format": "hdbtable"
+        },
+        "features": {
+            "snapi": true
+        },
+        "odata": {
+            "version": "v4"
         }
     }
 }

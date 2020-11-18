@@ -40,7 +40,19 @@ modules:
    requires:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
     - name: demo2-db
+      properties:
+        TARGET_CONTAINER: '~{hdi-service-name}'
 
+ # -------------------- USER DB MODULE ------------------------
+ - name: user-db
+ # ------------------------------------------------------------
+   type: hdb
+   path: user-db  
+   parameters:
+     app-name: demo2-user-db
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: demo2-user-db
 
 resources:
  # services extracted from CAP configuration
@@ -54,4 +66,27 @@ resources:
      service-plan: hdi-shared
    properties:
      hdi-service-name: ${service-name}
+
+# ------------------------------------------------------------
+ - name: demo2-user-db
+# ------------------------------------------------------------  
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hana  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+     config:
+       schema: OPENSAP_HANA_USER
+   properties:
+     user-container-name: '${service-name}'    
+
+# ------------------------------------------------------------
+ - name: cross-container-service-1
+# ------------------------------------------------------------  
+   type: org.cloudfoundry.existing-service
+   parameters:
+     service-name: CROSS_SCHEMA_SFLIGHT
+   properties:
+     the-service-name: '${service-name}'   
+
+
 

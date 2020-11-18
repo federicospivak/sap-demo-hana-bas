@@ -1,0 +1,14 @@
+{
+  "serviceName_1": {
+    "object_owner": {
+      "roles": [
+        "SFLIGHT_CONTAINER_ACCESS"
+      ]
+    },
+    "application_user": {
+      "roles": [
+        "SFLIGHT_CONTAINER_ACCESS"
+      ]
+    }
+  }
+}
